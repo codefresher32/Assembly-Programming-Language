@@ -1,0 +1,32 @@
+.model small
+.stack 100h
+.code
+
+main proc
+    
+    mov ah,1
+    int 21h
+    mov bl,al
+    sub al,48
+    
+    mov ah,2
+    mov dl,0ah
+    int 21h
+    mov dl,0dh
+    int 21h
+    
+    mov cx,0
+    mov cl,al
+    
+    top:
+        mov ah,2
+        mov dl,bl
+        int 21h
+        dec bl
+        loop top
+                
+    exit:
+        mov ah,4ch
+        int 21h
+        main endp
+end main
